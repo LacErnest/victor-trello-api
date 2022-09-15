@@ -7,7 +7,7 @@ module.exports = {
 }
 
 // Database Name
-const dbName = 'BAMBELLO_DB'
+const dbName = 'bambello-victor-db'
 
 var dbConn = null
 
