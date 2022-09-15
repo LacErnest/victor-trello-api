@@ -32,8 +32,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 } else {
     const corsOptions = {
-        origin: ['https://victor-trello.herokuapp.com', 'http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:3000', 'http://localhost:3000'],
-        credentials: true
+        origin: ['https://victor-trello.herokuapp.com', 'http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:3000', 'http://localhost:3000']
     }
     app.use(cors(corsOptions))
 } 
