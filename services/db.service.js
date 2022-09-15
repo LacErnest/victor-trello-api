@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
-
+//const { MongoClient } = require("mongodb");
+const logger = require('../services/logger.service')
 const config = require('../config')
 
 module.exports = {
@@ -10,6 +11,8 @@ module.exports = {
 const dbName = 'bambello-victor-db'
 
 var dbConn = null
+
+//const client = new MongoClient(config.dbURL);
 
 async function getCollection(collectionName) {
     try {
@@ -26,10 +29,12 @@ async function connect() {
     if (dbConn) return dbConn
     try {
         const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
-        const db = client.db(dbName)
+        const db = await client.db(dbName)
+        console.log("mongo_db", db)
         dbConn = db
         return db
     } catch (err) {
+        console.log("mongo_uri", config.dbURL)
         logger.error('Cannot Connect to DB', err)
         throw err
     }
