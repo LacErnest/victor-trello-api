@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 } 
 
-app.use(cors())
+app.use(cors({ credentials: true, origin: 'https://victor-trello.herokuapp.com' }));
 
 // ROUTES REQ
 const authRoutes = require('./api/auth/auth.routes')
