@@ -22,7 +22,7 @@ app.use(express.json({ limit: '50mb' }))
 app.use(cookieParser())
 
 
-if (process.env.NODE_ENV === 'production') {
+/* if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(__dirname, 'public')))
     app.use((req, res, next) => {
         if (req.header('x-forwarded-proto') !== 'https')
@@ -36,7 +36,9 @@ if (process.env.NODE_ENV === 'production') {
         credentials: true
     }
     app.use(cors(corsOptions))
-}
+} */
+
+app.use(cors())
 
 // ROUTES REQ
 const authRoutes = require('./api/auth/auth.routes')
@@ -64,9 +66,9 @@ connectSockets(http, session)
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
-app.get('/**', (req, res) => {
+/*app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+})*/
 
 const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030
